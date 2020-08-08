@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    Full Name: <input type="text" name="name"><br/>
+
+    File: <input type="file" name="myfile"><br/>
+    <button type="submit">Submit</button>
+
+</form>
+
+</body>
+</html>
