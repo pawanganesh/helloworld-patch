@@ -32,14 +32,11 @@ class InfoModelListAPIView(ListAPIView):
     filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
     authentication_classes = [TokenAuthentication, ]
     # permission_classes = [IsAuthenticated, ]
-    # permission_classes = [IsStaffUser, ]
+    permission_classes = [IsStaffUser, ]
 
-    def get_permissions(self):
-        if self.action == 'create' or self.action == 'update' or self.action == 'destroy':
-            permissions = [IsStaffUser]
-        else:
-            permissions = [IsAuthenticated]
-        return [permission() for permission in permissions]
+    search_fields = ['name']
+    order_fields = ['name', 'id']
+    filterset_fields = ['name']
 
     def get_queryset(self):
         return Info.objects.all()
